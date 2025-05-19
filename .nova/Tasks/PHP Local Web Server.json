@@ -1,0 +1,10 @@
+{
+  "extension" : {
+    "identifier" : "panic.PHP",
+    "name" : "PHP"
+  },
+  "extensionTemplate" : "phpLocalServerDebug",
+  "extensionValues" : {
+    "php.debug.launchBrowser" : false
+  }
+}

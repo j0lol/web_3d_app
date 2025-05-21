@@ -1,7 +1,11 @@
+:root {
+    --col: mediumslateblue;
+}
+
 header {
     display: flex;
     flex-direction: row;
-    background-color: #e61d2b;
+    background-color: var(--col);
 
     padding: 0.5em;
 }
@@ -11,15 +15,19 @@ header > * {
 .head-logo {
     position: relative;
     flex-grow: 0;
-    height: 3em;
-
-
+    /* height: 3em; */
+    color: hwb(from slategrey h calc(w + 100) b);
+    font-size: 2rem;
+    margin: 0;
+    text-shadow:
+        1px 1px hwb(from slategrey h w calc(b + 00)),
+        2px 2px hwb(from slategrey h w calc(b + 30)),
+        3px 3px hwb(from slategrey h w calc(b + 60));
 }
 .head-logo-light {
     position: absolute;
     height: 3em;
     z-index: 10;
-
 }
 .head-logo-shadow {
     position: absolute;
@@ -27,26 +35,41 @@ header > * {
     left: 1px;
     z-index: 9;
     height: 3em;
-
-
 }
 
 body {
     margin: 0;
 }
 
+.modelpicker {
+    & a {
+        user-select: none;
+
+        &:hover {
+            filter: brightness(80%);
+        }
+        &:active {
+            filter: brightness(60%);
+        }
+    }
+}
+
 main {
     max-width: 60rem;
     margin: 1rem auto 0; /* top LR btm */
     padding: 1rem;
-    box-shadow: 0 0.2rem 1rem black;
+    background-color: hwb(from slategrey h calc(w + 1100) b);
+
+    border: 1px solid hwb(from slategrey h w calc(b + 00));
+    box-shadow:
+        1px 1px hwb(from slategrey h w calc(b + 00)),
+        2px 2px hwb(from slategrey h w calc(b + 30)),
+        3px 3px hwb(from slategrey h w calc(b + 60));
 
     @media (width < 60rem) {
-        & {
+        &:not(.floating) {
             box-shadow: none;
             margin: 0 auto;
         }
     }
 }
-
-

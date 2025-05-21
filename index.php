@@ -13,8 +13,6 @@ include "funcs.php";
 component_header();
 ?>
 
-
-<?php session_start(); ?>
 <main>
     <p style="margin-top: 0;"> We design bespoke models for customers. </p>
 

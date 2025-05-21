@@ -87,7 +87,7 @@ component_header();
 
     <p>
 
-        The user can orbit the model with the camera.
+        The user can orbit the model with the scene's camera.
         This is done with the mouse.
         Panning can also be done with a right click, or gestures on a trackpad.
     </p>
@@ -96,16 +96,22 @@ component_header();
         To add ambience to the fish scene, a skybox, swimming animation, and background audio was added. The audio was sourced from <a href="https://freesound.org/people/Fission9/sounds/504641/">this FreeSound Listing (CC0)</a>.
     </p>
 
-    <p>Where animations are present, the user can press the "Play animation" button to activate them. This will also trigger any audio for the scene, as a button press is required before playing audio in modern browsers.</p>
+    <p>Where animations are present, the user can press the "Play animation" button in the floating window to activate them. This will also trigger any audio for the scene, as a button press is required before playing audio in modern browsers.</p>
     <h2>Implementation</h2>
 
 
     <p>
-        The website was implemented in PHP. This was chosen for a few reasons: It's plain simple to use, easy to extend your website with, and doesn't require the large boilerplate of web frameworks like React.
+        The website was implemented in PHP. This was chosen for a few reasons: It's plain simple to use, easy to extend your website with, and doesn't require the large boilerplate of web frameworks like React. PHP is used to simplify development in multiple areas. For one, the header is defined in a separate file. Any site that needs a header just calls the <code>component_header()</code> function. This follows the principle of <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">"Don't Repeat Yourself"</a> for cleaner code.
     </p>
 
     <p>
-        The model viewer is only one page, and GET parameters configure the model viewer page. <em>e.g.</em> <code>/model.php?model=fish.glb&water=true</code>. With these parameters, the PHP page can decide whether to show an animation button, add a skybox, play audio, and many more things without much extra code needed.
+        The model viewer is only one page, and GET parameters configure the model
+        viewer page. <em>e.g.</em> <code>/model.php?model=fish.glb&water=true</code>.
+        With these parameters, the PHP page can decide whether to show an animation
+        button, add a skybox, play audio, and many more things without much extra
+        code needed. To pass this information to JavaScript, the <code>&lt;three-canvas&gt;</code>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">custom element</a>
+        was given attributes from this GET parameter data. This can then be queried in the JavaScript code.
     </p>
     <p>
         A skybox HDRI was used to give a better lighting to the fish model. The skybox was sourced from <a href="https://opengameart.org/content/ocean-hdriskybox">this website</a>, and is licenced CC0. The HDRI was converted to a cubemap with <a href="https://matheowis.github.io/HDRI-to-CubeMap/">this tool</a>. To better suit the model for the lighting, a color picked from the HDRI was used for ambient lighting, and it was saturated for the point light.
@@ -136,7 +142,7 @@ component_header();
   light.position.set(10, 10, 10);
   scene.add(light);
 }</code></pre>
-    <sup>This code block was highlighted with <a href="https://prismjs.com/">Prism.js</a> </sup>
+    <sup> <b>Note: </b> This code block was highlighted with <a href="https://prismjs.com/">Prism.js</a> </sup>
 
 
     <p>The CSS was all custom made by myself. The text and box 3D shapes are implemented as stacked shadows of different colors. To make sure the colors were regular, I used the rather new <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_colors/Relative_colors">Relative Color Syntax</a>, as well as the obscure <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb"><code>hwb()</code></a> color notation for easier modification. Every color used on the page is either a built-in color, or a color defined relative to a built-in color. </p>
@@ -155,14 +161,17 @@ component_header();
 
     <h2>Publishing & Testing</h2>
 
-    <p>I have published this on GitHub, at this URL: <a href="https://github.com/j0lol/web_3d_app">here</a></p>
+    <p>I have published this on my personal GitHub account <a href="https://github.com/j0lol/web_3d_app">here</a>. The website is currently hosted on Sussex ITS at <a href="https://users.sussex.ac.uk/~jb2016/Web3D/">https://users.sussex.ac.uk/~jb2016/Web3D/</a>. </p>
 
     <h3>Cross-platform and cross-browser testing</h3>
-    <p>I have tested that the page works fine across MacOS and Windows with their default browsers. I tested iOS too, and notably touch screen controls for the camera. These work fine. Chrome and Firefox on macOS were tested too without major issues.. </p>
+    <p>I have tested that the page works fine across MacOS and Windows with their default browsers. I tested iOS too, and notably touch screen controls for the camera. These work fine. Chrome and Firefox on macOS were tested too without any major differences. This is due to the fact that my HTML is standards compliant, so browser variation would be unexpected. During development, devtools were used extensively to show errors and debug layout issues with the code. </p>
 
 
     <div class="modelpicker" style="display: inline-flex; margin-bottom: 1rem; flex-direction: row; max-width: 100%; border: 2mm ridge slategray;">
-        <img width=200 src="screenshots/iphone.PNG">
+        <img width=150 src="screenshots/iphone.PNG">
+        <div style="display: block; border-left: 1mm inset slategrey;"></div>
+        <img width=600 style="display: block;" src="screenshots/Screenshot 2025-05-21 at 13.08.05.png">
+
     </div>
 </main>
 
